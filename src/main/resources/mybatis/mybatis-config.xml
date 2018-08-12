@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <mappers>
-        <mapper resource="mappers/*Mapper.xml"></mapper>
+        <mapper resource="mappers/RedPacketMapper.xml"></mapper>
+        <mapper resource="mappers/UserRedPacketMapper.xml"></mapper>
     </mappers>
 </configuration>

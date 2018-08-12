@@ -8,7 +8,7 @@
             <arg column="amount" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
             <arg column="send_date" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
             <arg column="total" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="unit_amount" jdbcType="DECIMAL" javaType="java.lang.BigDecimal"/>
+            <arg column="unit_amount" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
             <arg column="stock" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="version" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="note" jdbcType="VARCHAR" javaType="java.lang.String"/>
@@ -37,7 +37,7 @@
       #{stock,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}
       )
   </insert>
-    <insert id="insertSelective" parameterType="com.wuzhazha.pojo.RedPacket" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertSelective" parameterType="com.wuzhazha.pojo.RedPacket" >
         insert into t_red_packet
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
