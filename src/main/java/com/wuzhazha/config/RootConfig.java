@@ -47,7 +47,7 @@ public class RootConfig implements TransactionManagementConfigurer {
         }
         Properties props = new Properties();
         props.setProperty("driverClassName","com.mysql.jdbc.Driver");
-        props.setProperty("url","jdbc:mysql://localhost:3306/mytest");
+        props.setProperty("url","jdbc:mysql://localhost:3306/high_concurrency_ssm");
         props.setProperty("username","root");
         props.setProperty("password","12345");
         props.setProperty("maxActive","200");
