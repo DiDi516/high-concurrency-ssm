@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wuzhazha.dao.UserRedPacketMapper">
+    <resultMap id="BaseResultMap" type="com.wuzhazha.pojo.UserRedPacket">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="red_packet_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="amount" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="grab_time" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="note" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, red_packet_id, user_id, amount, grab_time, note
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user_red_packet
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user_red_packet
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.wuzhazha.pojo.UserRedPacket">
+    insert into t_user_red_packet (id, red_packet_id, user_id, 
+      amount, grab_time, note
+      )
+    values (#{id,jdbcType=INTEGER}, #{redPacketId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{amount,jdbcType=DECIMAL}, #{grabTime,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.wuzhazha.pojo.UserRedPacket">
+        insert into t_user_red_packet
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="redPacketId != null">
+                red_packet_id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="grabTime != null">
+                grab_time,
+            </if>
+            <if test="note != null">
+                note,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="redPacketId != null">
+                #{redPacketId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="grabTime != null">
+                #{grabTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="note != null">
+                #{note,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wuzhazha.pojo.UserRedPacket">
+        update t_user_red_packet
+        <set>
+            <if test="redPacketId != null">
+                red_packet_id = #{redPacketId,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="grabTime != null">
+                grab_time = #{grabTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="note != null">
+                note = #{note,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wuzhazha.pojo.UserRedPacket">
+    update t_user_red_packet
+    set red_packet_id = #{redPacketId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      grab_time = #{grabTime,jdbcType=TIMESTAMP},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

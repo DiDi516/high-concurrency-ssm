@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wuzhazha.dao.RedPacketMapper">
+    <resultMap id="BaseResultMap" type="com.wuzhazha.pojo.RedPacket">
+        <constructor>
+            <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="amount" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
+            <arg column="send_date" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
+            <arg column="total" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="unit_amount" jdbcType="DECIMAL" javaType="java.lang.Long"/>
+            <arg column="stock" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="version" jdbcType="INTEGER" javaType="java.lang.Integer"/>
+            <arg column="note" jdbcType="VARCHAR" javaType="java.lang.String"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, user_id, amount, send_date, total, unit_amount, stock, version, note
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from t_red_packet
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_red_packet
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.wuzhazha.pojo.RedPacket">
+    insert into t_red_packet (id, user_id, amount, 
+      send_date, total, unit_amount, 
+      stock, version, note
+      )
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, 
+      #{sendDate,jdbcType=TIMESTAMP}, #{total,jdbcType=INTEGER}, #{unitAmount,jdbcType=DECIMAL}, 
+      #{stock,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.wuzhazha.pojo.RedPacket">
+        insert into t_red_packet
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="amount != null">
+                amount,
+            </if>
+            <if test="sendDate != null">
+                send_date,
+            </if>
+            <if test="total != null">
+                total,
+            </if>
+            <if test="unitAmount != null">
+                unit_amount,
+            </if>
+            <if test="stock != null">
+                stock,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="note != null">
+                note,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="amount != null">
+                #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="sendDate != null">
+                #{sendDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="total != null">
+                #{total,jdbcType=INTEGER},
+            </if>
+            <if test="unitAmount != null">
+                #{unitAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="stock != null">
+                #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=INTEGER},
+            </if>
+            <if test="note != null">
+                #{note,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.wuzhazha.pojo.RedPacket">
+        update t_red_packet
+        <set>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="amount != null">
+                amount = #{amount,jdbcType=DECIMAL},
+            </if>
+            <if test="sendDate != null">
+                send_date = #{sendDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="total != null">
+                total = #{total,jdbcType=INTEGER},
+            </if>
+            <if test="unitAmount != null">
+                unit_amount = #{unitAmount,jdbcType=DECIMAL},
+            </if>
+            <if test="stock != null">
+                stock = #{stock,jdbcType=INTEGER},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=INTEGER},
+            </if>
+            <if test="note != null">
+                note = #{note,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.wuzhazha.pojo.RedPacket">
+    update t_red_packet
+    set user_id = #{userId,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DECIMAL},
+      send_date = #{sendDate,jdbcType=TIMESTAMP},
+      total = #{total,jdbcType=INTEGER},
+      unit_amount = #{unitAmount,jdbcType=DECIMAL},
+      stock = #{stock,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
