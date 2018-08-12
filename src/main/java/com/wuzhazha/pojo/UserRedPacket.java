@@ -1,9 +1,13 @@
 package com.wuzhazha.pojo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class UserRedPacket {
+public class UserRedPacket implements Serializable{
+
+    private static final long serialVersionUID = -8491335375577428387L;
+
     private Integer id;
 
     private Integer redPacketId;

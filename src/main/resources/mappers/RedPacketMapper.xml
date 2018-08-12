@@ -8,7 +8,7 @@
             <arg column="amount" jdbcType="DECIMAL" javaType="java.math.BigDecimal"/>
             <arg column="send_date" jdbcType="TIMESTAMP" javaType="java.util.Date"/>
             <arg column="total" jdbcType="INTEGER" javaType="java.lang.Integer"/>
-            <arg column="unit_amount" jdbcType="DECIMAL" javaType="java.lang.Long"/>
+            <arg column="unit_amount" jdbcType="DECIMAL" javaType="java.lang.BigDecimal"/>
             <arg column="stock" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="version" jdbcType="INTEGER" javaType="java.lang.Integer"/>
             <arg column="note" jdbcType="VARCHAR" javaType="java.lang.String"/>
@@ -27,17 +27,17 @@
     delete from t_red_packet
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.wuzhazha.pojo.RedPacket">
+    <insert id="insert" parameterType="com.wuzhazha.pojo.RedPacket" useGeneratedKeys="true" keyProperty="id">
     insert into t_red_packet (id, user_id, amount, 
       send_date, total, unit_amount, 
       stock, version, note
       )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{amount,jdbcType=DECIMAL}, 
-      #{sendDate,jdbcType=TIMESTAMP}, #{total,jdbcType=INTEGER}, #{unitAmount,jdbcType=DECIMAL}, 
+      now(), #{total,jdbcType=INTEGER}, #{unitAmount,jdbcType=DECIMAL},
       #{stock,jdbcType=INTEGER}, #{version,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR}
       )
   </insert>
-    <insert id="insertSelective" parameterType="com.wuzhazha.pojo.RedPacket">
+    <insert id="insertSelective" parameterType="com.wuzhazha.pojo.RedPacket" useGeneratedKeys="true" keyProperty="id">
         insert into t_red_packet
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -140,4 +140,9 @@
       note = #{note,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+    <update id="decreaseRedPacket">
+        update t_red_packet set stock = stock -1 where id = #{id}
+    </update>
+
 </mapper>

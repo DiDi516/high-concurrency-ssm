@@ -24,15 +24,15 @@
     delete from t_user_red_packet
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <insert id="insert" parameterType="com.wuzhazha.pojo.UserRedPacket">
+    <insert id="insert" parameterType="com.wuzhazha.pojo.UserRedPacket" useGeneratedKeys="true" keyProperty="id">
     insert into t_user_red_packet (id, red_packet_id, user_id, 
       amount, grab_time, note
       )
     values (#{id,jdbcType=INTEGER}, #{redPacketId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
-      #{amount,jdbcType=DECIMAL}, #{grabTime,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR}
+      #{amount,jdbcType=DECIMAL}, now(), #{note,jdbcType=VARCHAR}
       )
   </insert>
-    <insert id="insertSelective" parameterType="com.wuzhazha.pojo.UserRedPacket">
+    <insert id="insertSelective" parameterType="com.wuzhazha.pojo.UserRedPacket" useGeneratedKeys="true" keyProperty="id">
         insert into t_user_red_packet
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">

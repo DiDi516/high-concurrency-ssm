@@ -1,7 +1,9 @@
 package com.wuzhazha.dao;
 
 import com.wuzhazha.pojo.UserRedPacket;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface UserRedPacketMapper {
     int deleteByPrimaryKey(Integer id);
 

@@ -1,9 +1,13 @@
 package com.wuzhazha.pojo;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class RedPacket {
+public class RedPacket implements Serializable {
+
+    private static final long serialVersionUID = 5849659734077240940L;
+
     private Integer id;
 
     private Integer userId;
@@ -14,7 +18,7 @@ public class RedPacket {
 
     private Integer total;
 
-    private Long unitAmount;
+    private BigDecimal unitAmount;
 
     private Integer stock;
 
@@ -22,7 +26,7 @@ public class RedPacket {
 
     private String note;
 
-    public RedPacket(Integer id, Integer userId, BigDecimal amount, Date sendDate, Integer total, Long unitAmount, Integer stock, Integer version, String note) {
+    public RedPacket(Integer id, Integer userId, BigDecimal amount, Date sendDate, Integer total, BigDecimal unitAmount, Integer stock, Integer version, String note) {
         this.id = id;
         this.userId = userId;
         this.amount = amount;
@@ -78,11 +82,11 @@ public class RedPacket {
         this.total = total;
     }
 
-    public Long getUnitAmount() {
+    public BigDecimal getUnitAmount() {
         return unitAmount;
     }
 
-    public void setUnitAmount(Long unitAmount) {
+    public void setUnitAmount(BigDecimal unitAmount) {
         this.unitAmount = unitAmount;
     }
 
