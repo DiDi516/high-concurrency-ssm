@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.util.Properties;
 
 import static org.springframework.context.annotation.ComponentScan.*;
@@ -65,9 +67,10 @@ public class RootConfig implements TransactionManagementConfigurer {
      * @return
      */
     @Bean(name="sqlSessionFactory")
-    public SqlSessionFactoryBean initSqlSessionFactory(){
+    public SqlSessionFactoryBean initSqlSessionFactory() throws IOException {
         SqlSessionFactoryBean sqlSessionFactory = new SqlSessionFactoryBean();
         sqlSessionFactory.setDataSource(initDataSource());
+        sqlSessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*.xml"));
         //配置mybatis配置文件
         Resource resource = new ClassPathResource("mybatis/mybatis-config.xml");
         sqlSessionFactory.setConfigLocation(resource);
