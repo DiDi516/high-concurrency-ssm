@@ -14,4 +14,13 @@ public interface UserRedPacketService {
      * @return
      */
     int grapRedPacket(Integer redPacketId,Integer userId);
+
+    /**
+     * 保存抢红包信息（添加乐观锁），添加重试次数提高成功率
+     * @param redPacketId
+     * @param userId
+     * @return
+     */
+    int grapRedPacketForVersion(Integer redPacketId,Integer userId);
+
 }

@@ -31,4 +31,5 @@ public class RedPacketServiceImpl implements RedPacketService {
     public int decreaseRedPacket(Integer id) {
         return redPacketMapper.decreaseRedPacket(id);
     }
+
 }
